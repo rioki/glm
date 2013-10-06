@@ -15,7 +15,7 @@ namespace glm
                     -(zfar + znear) / (zfar - znear), 1.0f); 
     }
     
-    mat4 look_at(vec3 eye, vec3 center, vec3 up)
+    mat4 lookat(vec3 eye, vec3 center, vec3 up)
     {
         vec3 forward = normalize(center - eye);
         vec3 side    = normalize(cross(forward, up));
