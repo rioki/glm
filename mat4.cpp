@@ -100,6 +100,11 @@ namespace glm
         return vec4(data[i*4 + 0], data[i*4 + 1], data[i*4 + 2], data[i*4 + 3]);
     }
     
+    const float* mat4::c_arr() const
+    {
+        return reinterpret_cast<const float*>(data);
+    }
+    
     mat4 operator + (const mat4& a, const mat4& b)
     {
         mat4 t = a;

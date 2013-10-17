@@ -94,6 +94,11 @@ namespace glm
         return vec3(data[i*3 + 0], data[i*3 + 1], data[i*3 + 2]);
     }
     
+    const float* mat3::c_arr() const
+    {
+        return reinterpret_cast<const float*>(data);
+    }
+    
     mat3 operator + (const mat3& a, const mat3& b)
     {
         mat3 t = a;

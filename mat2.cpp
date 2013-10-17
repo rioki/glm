@@ -88,6 +88,11 @@ namespace glm
         return vec2(data[i*2 + 0], data[i*2 + 1]);
     }
     
+    const float* mat2::c_arr() const
+    {
+        return reinterpret_cast<const float*>(data);
+    }
+    
     mat2 operator + (const mat2& a, const mat2& b)
     {
         mat2 t = a;

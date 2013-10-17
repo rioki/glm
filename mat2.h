@@ -39,6 +39,8 @@ namespace glm
         
         vec2 operator [] (unsigned int i) const;
         
+        const float* c_arr() const;
+        
     private:
         float data[4];
     };

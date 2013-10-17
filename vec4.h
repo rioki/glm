@@ -41,6 +41,8 @@ namespace glm
         
         float operator [] (unsigned int i) const;
         
+        const float* c_arr() const;
+        
     private:
         float data[4];
     };

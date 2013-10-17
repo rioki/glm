@@ -112,6 +112,11 @@ namespace glm
         return data[i];
     }
     
+    const float* vec4::c_arr() const
+    {
+        return reinterpret_cast<const float*>(data);
+    }
+    
     vec4 operator + (const vec4& v)
     {
         return v;

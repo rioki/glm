@@ -88,6 +88,11 @@ namespace glm
     {
         return data[i];
     }
+    
+    const float* vec3::c_arr() const
+    {
+        return reinterpret_cast<const float*>(data);
+    }
         
     vec3 operator + (const vec3& v)
     {
