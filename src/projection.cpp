@@ -17,14 +17,22 @@ namespace glm
                     -(right + left) / (right - left), -(top + bottom) / (top - bottom), -(zfar + znear) / (zfar - znear), 1.0f); 
     }
     
-    mat4 perspective(float fov, float aspect, float znear, float zfar)
+    mat4 perspective(float fov, float a, float n, float f)
     {
-        float ymax = znear * tanf(fov * PI / 360.0f);
+        /*float ymax = znear * tanf(fov * PI / 360.0f);
         float ymin = -ymax;
         float xmin = ymin * aspect;
         float xmax = ymax * aspect;
 
-        return furstrum(xmin, xmax, ymin, ymax, znear, zfar);
+        return furstrum(xmin, xmax, ymin, ymax, znear, zfar);*/
+        
+        float e = 1 / tan(fov/2);
+        
+        // NOTE this may need to be transposed.
+        return mat4(  e, 0.0,            0.0,              0.0,
+                    0.0, e/a,            0.0,              0.0,
+                    0.0, 0.0, -((f+n)/(f-n)), -((2*f*n)/(f-n)),
+                    0.0, 0.0,           -1.0,              0.0);
     }
     
     mat4 furstrum(float left, float right, float top, float bottom, float znear, float zfar)

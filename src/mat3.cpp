@@ -127,7 +127,7 @@ namespace glm
                     // TODO performance? a vec3 is built for every call
                     t += a[i][k] * b[k][j];
                 }
-                r[i * 3 + j] = t;
+                r[j * 3 + i] = t;
             }
         }
         
@@ -159,7 +159,7 @@ namespace glm
         {
             for (unsigned int j = 0; j < 3; j++)
             {
-                r[i * 3 + j] = a[i][j] * b[i][j];
+                r[j * 3 + i] = a[i][j] * b[i][j];
             }
         }
         
@@ -174,7 +174,7 @@ namespace glm
         {
             for (unsigned int j = 0; j < 3; j++)
             {
-                r[i * 3 + j] = m[i][j];
+                r[j * 3 + i] = m[i][j];
             }
         }
         

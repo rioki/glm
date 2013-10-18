@@ -121,7 +121,7 @@ namespace glm
                     // TODO performance? a vec2 is built for every call
                     t += a[i][k] * b[k][j];
                 }
-                r[i * 2 + j] = t;
+                r[j * 2 + i] = t;
             }
         }
         
@@ -153,7 +153,7 @@ namespace glm
         {
             for (unsigned int j = 0; j < 2; j++)
             {
-                r[i * 2 + j] = a[i][j] * b[i][j];
+                r[j * 2 + i] = a[i][j] * b[i][j];
             }
         }
         
@@ -168,7 +168,7 @@ namespace glm
         {
             for (unsigned int j = 0; j < 2; j++)
             {
-                r[i * 2 + j] = m[i][j];
+                r[j * 2 + i] = m[i][j];
             }
         }
         
