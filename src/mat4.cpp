@@ -2,6 +2,9 @@
 #include "mat4.h"
 
 #include <cstring>
+#include <cmath>
+#include <cfloat>
+#include <iostream>
 
 #include "mat2.h"
 #include "mat3.h"
@@ -95,6 +98,23 @@ namespace glm
         return *this;
     }
     
+    bool mat4::operator == (const mat4& m)
+    {        
+        for (unsigned int i = 0; i < 16; i++)
+        {
+            if (std::abs(data[i] - m.data[i]) > FLT_EPSILON)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+        
+    bool mat4::operator != (const mat4& m)
+    {
+        return !(*this == m);
+    }
+    
     vec4 mat4::operator [] (unsigned int i) const
     {
         return vec4(data[i*4 + 0], data[i*4 + 1], data[i*4 + 2], data[i*4 + 3]);
@@ -133,7 +153,7 @@ namespace glm
                     // TODO performance? a vec4 is built for every call
                     t += a[i][k] * b[k][j];
                 }
-                r[j * 4 + i] = t;
+                r[i * 4 + j] = t;
             }
         }
         
@@ -165,7 +185,7 @@ namespace glm
         {
             for (unsigned int j = 0; j < 4; j++)
             {
-                r[j * 4 + i] = a[i][j] * b[i][j];
+                r[i * 4 + j] = a[i][j] * b[i][j];
             }
         }
         
@@ -185,5 +205,21 @@ namespace glm
         }
         
         return mat4(r);
+    }
+    
+    std::ostream& operator << (std::ostream& os, const mat4& m)
+    {
+        const float* data = m.c_arr();
+        os << "(";
+        for (unsigned int i = 0; i < 16; i++)
+        {
+            os << data[i];
+            if (i != 15)
+            {
+                os << ", ";
+            }
+        }
+        os << ")";
+        return os;
     }
 }

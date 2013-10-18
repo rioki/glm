@@ -60,5 +60,6 @@ dist:
 	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 	
 ifneq "$(MAKECMDGOALS)" "clean"
--include $(patsubst %.cpp, %.d, $(srcs))
+-include $(patsubst %.cpp, %.d, $(glm_SOURCES))
+-include $(patsubst %.cpp, %.d, $(test_SOURCES))
 endif

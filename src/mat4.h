@@ -2,6 +2,8 @@
 #ifndef _MATRIX44_H_
 #define _MATRIX44_H_
 
+#include <iosfwd>
+
 namespace glm
 {
     class vec4;
@@ -39,14 +41,18 @@ namespace glm
         
         const mat4& operator -= (const mat4& v);
         
+        bool operator == (const mat4& m);
+        
+        bool operator != (const mat4& m);
+        
         vec4 operator [] (unsigned int i) const;
         
         const float* c_arr() const;
         
     private:
         float data[16];
-    };
-
+    };       
+    
     mat4 operator + (const mat4& a, const mat4& b);
     
     mat4 operator - (const mat4& a, const mat4& b);
@@ -58,6 +64,8 @@ namespace glm
     mat4 matrixCompMult(const mat4& a, const mat4& b);
     
     mat4 transpose(const mat4& m);    
+    
+    std::ostream& operator << (std::ostream& os, const mat4& m);    
 }
 
 #endif
