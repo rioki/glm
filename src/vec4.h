@@ -2,6 +2,8 @@
 #ifndef _GLM_VEC4_H_
 #define _GLM_VEC4_H_
 
+#include <iosfwd>
+
 namespace glm
 {
     class vec2;
@@ -36,6 +38,10 @@ namespace glm
         const vec4& operator += (const vec4& v);
         
         const vec4& operator -= (const vec4& v);
+        
+        bool operator == (const vec4& v);
+        
+        bool operator != (const vec4& v);
         
         float& operator [] (unsigned int i);
         
@@ -86,6 +92,8 @@ namespace glm
     vec4 mix(const vec4& a, const vec4& b, const vec4& wb);
     
     vec4 mix(const vec4& a, const vec4& b, float wb);
+    
+    std::ostream& operator << (std::ostream& os, const vec4& v);
 }
 
 #endif

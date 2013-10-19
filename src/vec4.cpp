@@ -4,6 +4,8 @@
 #include <cstring>
 #include <cmath>
 #include <algorithm>
+#include <iostream>
+#include <cfloat>
 
 #include "vec2.h"
 #include "vec3.h"
@@ -100,6 +102,23 @@ namespace glm
         data[2] -= v.data[2];
         data[3] -= v.data[3];
         return *this;
+    }
+    
+    bool vec4::operator == (const vec4& v)
+    {
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            if (std::abs(data[i] - v.data[i]) > 1e-4)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+        
+    bool vec4::operator != (const vec4& v)
+    {
+        return !(*this == v);
     }
         
     float& vec4::operator [] (unsigned int i)
@@ -219,5 +238,21 @@ namespace glm
     vec4 mix(const vec4& a, const vec4& b, float wb) 
     {
         return a * vec4(1.0 - wb) + b * vec4(wb);
+    }
+    
+    std::ostream& operator << (std::ostream& os, const vec4& v)
+    {
+        const float* data = v.c_arr();
+        os << "(";
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            os << data[i];
+            if (i != 3)
+            {
+                os << ", ";
+            }
+        }
+        os << ")";
+        return os;
     }
 }

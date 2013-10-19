@@ -102,7 +102,7 @@ namespace glm
     {        
         for (unsigned int i = 0; i < 16; i++)
         {
-            if (std::abs(data[i] - m.data[i]) > FLT_EPSILON)
+            if (std::abs(data[i] - m.data[i]) > 1e-4)
             {
                 return false;
             }
@@ -151,7 +151,7 @@ namespace glm
                 for (unsigned int k = 0; k < 4; k++)
                 {
                     // TODO performance? a vec4 is built for every call
-                    t += a[i][k] * b[k][j];
+                    t += a[k][j] * b[i][k];
                 }
                 r[i * 4 + j] = t;
             }
@@ -169,7 +169,7 @@ namespace glm
             float t = 0;
             for (unsigned int j = 0; j < 4; j++)
             {
-               t += m[i][j] * v[j]; 
+               t += m[j][i] * v[j]; 
             }
             r[i] = t;
         }

@@ -10,7 +10,7 @@ inst_HEADERS     := src/glm.h src/mat2.h src/mat3.h src/mat4.h src/projection.h 
 				    src/vec2.h src/vec3.h src/vec4.h
 glm_SOURCES      := src/mat2.cpp src/mat3.cpp src/mat4.cpp src/projection.cpp \
 				    src/vec2.cpp src/vec3.cpp src/vec4.cpp
-test_SOURCES     := test/main.cpp test/mat4_test.cpp
+test_SOURCES     := test/main.cpp test/mat4_test.cpp test/proj_test.cpp
 test_LDADD       := -lrtest 
 extra_dist_FILES := Makefile README.md
 
