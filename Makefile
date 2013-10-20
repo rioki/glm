@@ -24,10 +24,12 @@ endif
 
 .PHONY: all clean check install uninstall
 
-all: lib$(PACKAGE).a
+all: $(PACKAGE)$(LIBEXT)
+	
+$(PACKAGE)$(LIBEXT): $(patsubst %.cpp, %.o, $(glm_SOURCES))
+	$(CXX) -shared -fPIC $(CXXFLAGS) $^ $(LDFLAGS) -Wl,--out-implib=lib$(PACKAGE).a -o $@
 
-lib$(PACKAGE).a: $(patsubst %.cpp, %.o, $(glm_SOURCES))
-	ar rcs $@ $^
+lib$(PACKAGE).a: $(PACKAGE)$(LIBEXT)	
 	
 check: $(PACKAGE)-test$(EXEEXT)
 	./$(PACKAGE)-test$(EXEEXT)
@@ -36,18 +38,22 @@ $(PACKAGE)-test$(EXEEXT): $(patsubst %.cpp, %.o, $(test_SOURCES)) lib$(PACKAGE).
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) $(test_LDADD) -o $@
 
 clean:
-	rm -rf lib$(PACKAGE).a $(PACKAGE)-test$(EXEEXT) */*.o */*.d
+	rm -rf lib$(PACKAGE).a $(PACKAGE)$(LIBEXT) $(PACKAGE)-test$(EXEEXT) */*.o */*.d
 	
-install: lib$(PACKAGE).a
+install: $(PACKAGE)$(LIBEXT)
 	mkdir -p $(prefix)/include/$(PACKAGE)
 	cp $(inst_HEADERS) $(prefix)/include/$(PACKAGE)
 	mkdir -p $(prefix)/lib
-	cp lib$(PACKAGE).a $(prefix)/lib	
+	cp lib$(PACKAGE).a $(prefix)/lib
+	mkdir -p $(prefix)/bin
+	cp $(PACKAGE)$(LIBEXT) $(prefix)/lib
+		
 
 uninstall:
 	rm -rf $(prefix)/include/$(PACKAGE)
 	rm -f $(prefix)/lib/lib$(PACKAGE).a
-
+	rm -f $(prefix)/bin/$(PACKAGE)$(LIBEXT)
+	
 dist:
 	mkdir $(PACKAGE)-$(VERSION)
 	cp $(headers) $(PACKAGE)-$(VERSION)
