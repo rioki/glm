@@ -44,10 +44,10 @@ namespace glm
         vec3 side    = normalize(cross(up, forward));
         vec3 up2     = normalize(cross(forward, side));
         
-        mat4 rotation(    side[0],     side[1],     side[2], 0.0,
-                           up2[0],      up2[1],      up2[2], 0.0,
-                      -forward[0], -forward[1], -forward[2], 0.0,
-                              0.0,         0.0,         0.0, 1.0);
+        mat4 rotation(side[0], up2[0], -forward[0], 0.0,
+                      side[1], up2[1], -forward[1], 0.0,
+                      side[2], up2[2], -forward[2], 0.0,                      
+                          0.0,    0.0,         0.0, 1.0);
         return rotation * translate(-eye);
     }
     
