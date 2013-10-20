@@ -43,7 +43,7 @@ namespace glm
         const float* c_arr() const;
         
     private:
-        float data[8];
+        float data[9];
     };
 
     mat3 operator + (const mat3& a, const mat3& b);
