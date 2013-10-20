@@ -46,7 +46,7 @@ install: $(PACKAGE)$(LIBEXT)
 	mkdir -p $(prefix)/lib
 	cp lib$(PACKAGE).a $(prefix)/lib
 	mkdir -p $(prefix)/bin
-	cp $(PACKAGE)$(LIBEXT) $(prefix)/lib
+	cp $(PACKAGE)$(LIBEXT) $(prefix)/bin
 		
 
 uninstall:
