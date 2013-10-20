@@ -40,7 +40,7 @@ namespace glm
         const float* c_arr() const;
     
     private:
-        float data[4];        
+        float data[3];        
     };
     
     vec3 operator + (const vec3& v);
