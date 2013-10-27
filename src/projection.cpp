@@ -92,4 +92,12 @@ namespace glm
                     -cy*sz, -sx*sy*sz + cx*cz,  cy*sy*sz + sx*cz,
                         sy,            -sx*cy,             cx*cy);
     }
+    
+    mat4 scale(vec3 v)
+    {
+        return mat4(v[0],  0.0,  0.0, 0.0,
+                     0.0, v[1],  0.0, 0.0,
+                     0.0,  0.0, v[2], 0.0,
+                     0.0,  0.0,  0.0, 1.0);
+    }
 }

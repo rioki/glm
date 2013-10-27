@@ -21,6 +21,8 @@ namespace glm
     
     mat3 euler(vec3 v);
     mat3 euler(float x, float y, float z);
+    
+    mat4 scale(vec3 v);
 }
 
 #endif
