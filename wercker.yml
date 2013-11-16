@@ -2,6 +2,12 @@ box: rioki/gcc-cpp
 build:
   steps:
     - script:
+        name: autogen
+        code: ./autogen.sh
+    - script:
+        name: configure
+        code: ./configure
+    - script:    
         name: make
         code: make
     - script:
