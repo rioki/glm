@@ -3,10 +3,10 @@ build:
   steps:
     - script:
         name: autogen
-        code: ./autogen.sh
+        code: sh autogen.sh
     - script:
         name: configure
-        code: ./configure
+        code: sh configure
     - script:    
         name: make
         code: make
