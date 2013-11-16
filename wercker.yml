@@ -1,4 +1,5 @@
 box: rioki/gcc-cpp
+build:
   steps:
     - script:
         name: make
