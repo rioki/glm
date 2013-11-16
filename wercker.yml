@@ -1,0 +1,8 @@
+box: rioki/gcc-cpp
+  steps:
+    - script:
+        name: make
+        code: make
+    - script:
+        name: make check
+        code: make check
