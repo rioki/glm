@@ -2,6 +2,8 @@
 Graphic Library Math
 ====================
 
+[![wercker status](https://app.wercker.com/status/9a13a484d6544410ce806a8bb0da731a/m "wercker status")](https://app.wercker.com/project/bykey/9a13a484d6544410ce806a8bb0da731a)
+
 When developing for OpenGL basic vector and linear algebra is needed. 
 
 This library aims to make GLSL programmers feel right at home, by mimicing 
