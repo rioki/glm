@@ -294,6 +294,14 @@ namespace glm
         return r;
     }
     
+    template <typename T>
+    vector<T, 3> cross (const vector<T, 3>& a, const vector<T, 3>& b)
+    {
+        return vector<T, 3>((a[1] * b[2]) - (a[2] * b[1]),
+                            (a[2] * b[0]) - (a[0] * b[2]),
+                            (a[0] * b[1]) - (a[1] * b[0]));
+    }
+    
     template <typename T, unsigned int N>
     T length(const vector<T, N>& v)
     {
