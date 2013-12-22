@@ -15,9 +15,7 @@ build:
     - script:
         name: configure
         code: sh configure
-    - script:    
-        name: make
-        code: make
     - script:
         name: make check
         code: make check
+        

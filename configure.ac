@@ -4,14 +4,10 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CANONICAL_HOST
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
-AM_PROG_AR
 AM_SILENT_RULES([yes])
 
 AC_LANG([C++])
 AC_PROG_CXX
-AX_CXX_COMPILE_STDCXX_11
-
-LT_INIT([shared static win32-dll])
 
 AC_CHECK_HEADER([rtest.h])
 AC_CHECK_LIB([rtest], [main], [TEST_LIBS="$TEST_LIBS -lrtest"], AC_MSG_WARN([rtest not found]))

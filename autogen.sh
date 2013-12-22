@@ -2,7 +2,6 @@
 
 set -x
 
-aclocal -I m4
-libtoolize
+aclocal
 autoconf
 automake --add-missing --copy
