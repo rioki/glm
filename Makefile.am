@@ -1,7 +1,9 @@
 
 pkginclude_HEADERS = src/glm.h \
                      src/vector.h \
-                     src/matrix.h
+                     src/matrix.h \
+                     src/projection.h \
+                     src/transform.h
 
 check_PROGRAMS     = glm-test
 TESTS              = glm-test
@@ -14,6 +16,7 @@ glm_test_SOURCES   = test/main.cpp \
                      test/vec4_test.cpp \
                      test/mat2_test.cpp \
                      test/mat3_test.cpp \
-                     test/mat4_test.cpp
+                     test/mat4_test.cpp \
+                     test/proj_test.cpp
 
 EXTRA_DIST         = README.md

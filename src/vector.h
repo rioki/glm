@@ -145,13 +145,13 @@ namespace glm
             }
         }
         
-        const vector<T, N> operator = (const vector<T, N>& v)
+        const vector<T, N>& operator = (const vector<T, N>& v)
         {
             for (unsigned int i = 0; i < N; i++)
             {
                 data[i] = v.data[i];
             }
-            return this;
+            return *this;
         }       
         
         const vector<T, N>& operator += (const vector<T, N>& v)
