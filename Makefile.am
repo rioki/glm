@@ -2,8 +2,10 @@
 pkginclude_HEADERS = src/glm.h \
                      src/vector.h \
                      src/matrix.h \
+                     src/vprox.h \
                      src/projection.h \
-                     src/transform.h
+                     src/transform.h \
+                     src/utils.h
 
 check_PROGRAMS     = glm-test
 TESTS              = glm-test
