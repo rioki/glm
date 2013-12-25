@@ -81,6 +81,30 @@ namespace glm
             data[12] = v12; data[13] = v13; data[14] = v14; data[15] = v15;
         }
         
+        template <typename T2, unsigned int N2>       
+        matrix(const matrix<T2, N2>& o)
+        {
+            unsigned int n = std::min(N, N2);
+            for (unsigned int i = 0; i < N; i++)
+            {
+                for (unsigned int j = 0; j < N; j++)
+                {
+                    if (i < N2 && j < N2)
+                    {
+                        data[i*N + j] = o[i][j];
+                    }
+                    else if (i == j)
+                    {
+                        data[i*N + j] = 1;
+                    }
+                    else
+                    {
+                        data[i*N + j] = 0;
+                    }
+                }
+            }
+        }
+        
         matrix(const matrix<T, N>& o)
         {
             for (unsigned int i = 0; i < N * N; i++)

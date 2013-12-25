@@ -74,4 +74,34 @@ SUITE(mat4_test)
         
         CHECK_EQUAL(glm::vec4(90, 100, 110, 120), r);
     }
+    
+    TEST(init_smaller)
+    {
+        glm::mat4 m4( 1,  2,  3, 4,
+                      5,  6,  7, 8,
+                      9, 10, 11, 12,
+                     13, 14, 15, 16);
+        glm::mat3 m3(m4);
+        
+        glm::mat3 r(1,  2,  3,
+                    5,  6,  7,
+                    9, 10, 11);
+                    
+        CHECK_EQUAL(r, m3);        
+    }    
+    
+    TEST(init_larger)
+    {
+        glm::mat3 m3( 1, 2, 3, 
+                      4, 5, 6,
+                      7, 8, 9);
+        glm::mat4 m4(m3);
+        
+        glm::mat4 r(1, 2, 3, 0,
+                    4, 5, 6, 0,
+                    7, 8, 9, 0,
+                    0, 0, 0, 1);
+                    
+        CHECK_EQUAL(r, m4);        
+    }    
 }
