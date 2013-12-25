@@ -146,6 +146,11 @@ namespace glm
             return *this;
         }
         
+        operator const T* () const
+        {
+            return data;
+        }
+        
     private:
         T data[N*N];
     };

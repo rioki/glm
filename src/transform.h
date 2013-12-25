@@ -23,7 +23,7 @@ namespace glm
     template <typename T>
     matrix<T, 4> translate(const matrix<T, 4>& m, const vector<T, 3> v)
     {
-        return traslate(m, v[0], v[1], v[2]);
+        return translate(m, v[0], v[1], v[2]);
     }    
     
     template <typename T>

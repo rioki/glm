@@ -195,6 +195,11 @@ namespace glm
             return data[i];
         }
         
+        operator const T* () const
+        {
+            return data;
+        }
+        
     private:
         T data[N];
     };
