@@ -116,5 +116,5 @@ SUITE(vec4)
         glm::vec4 a(1.0f, 2.0f, 3.0f, 4.0f);
         
         CHECK_EQUAL(glm::vec4(2.0f, 4.0f, 6.0f, 8.0f), a * 2.0f);
-    }
+    }    
 }

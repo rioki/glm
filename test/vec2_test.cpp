@@ -44,5 +44,21 @@ SUITE(vec2)
         CHECK_EQUAL(glm::vec2(2.0f, 4.0f), a * 2.0f);
     }
     
+    TEST(floor)
+    {
+        glm::vec2 r = glm::floor(glm::vec2(1.5f, 2.3f));
+        CHECK_EQUAL(glm::vec2(1.0f, 2.0f), r);
+    }
     
+    TEST(ceil)
+    {
+        glm::vec2 r = glm::ceil(glm::vec2(1.5f, 2.3f));
+        CHECK_EQUAL(glm::vec2(2.0f, 3.0f), r);
+    }
+
+    TEST(round)
+    {
+        glm::vec2 r = glm::round(glm::vec2(1.5f, 2.3f));
+        CHECK_EQUAL(glm::vec2(2.0f, 2.0f), r);
+    }    
 }

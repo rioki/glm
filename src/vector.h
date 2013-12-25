@@ -408,6 +408,46 @@ namespace glm
     }
     
     template <typename T, unsigned int N>
+    vector<T, N> floor(const vector<T, N>& v)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            r[i] = std::floor(v[i]);
+        } 
+        
+        return r;
+    }
+    
+    template <typename T, unsigned int N>
+    vector<T, N> ceil(const vector<T, N>& v)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            r[i] = std::ceil(v[i]);
+        } 
+        
+        return r;
+    }
+    
+    template <typename T, unsigned int N>
+    vector<T, N> round(const vector<T, N>& v)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {             
+            // WHY U NO std::round?!
+            r[i] = ::round(v[i]);
+        } 
+        
+        return r;
+    }
+    
+    template <typename T, unsigned int N>
     std::ostream& operator << (std::ostream& os, const vector<T, N>& v)
     {
         os << "(";
