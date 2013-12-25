@@ -85,6 +85,16 @@ SUITE(vec4)
         CHECK_EQUAL(4.0f, v[3]);
     }
     
+    TEST(init45)
+    {
+        glm::vec4 v(glm::vec3(1.0f, 2.0f, 3.0f), 4.0f);
+        
+        CHECK_EQUAL(1.0f, v[0]);
+        CHECK_EQUAL(2.0f, v[1]);
+        CHECK_EQUAL(3.0f, v[2]);
+        CHECK_EQUAL(4.0f, v[3]);
+    }
+    
     TEST(add)
     {
         glm::vec4 a(1.0f, 2.0f, 3.0f, 4.0f);

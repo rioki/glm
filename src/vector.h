@@ -107,6 +107,17 @@ namespace glm
             }
         }
         
+        vector(const vector<T, N-1> v, T s)
+        {
+            assert(N >= 3);
+            
+            data[N-1] = s;
+            for (unsigned int i = 0; i < N - 1; i++)
+            {
+                data[i] = v[i];
+            }
+        }
+        
         vector(const vector<T, N - 2> v, T u, T s)
         {
             assert(N >= 3);

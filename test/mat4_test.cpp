@@ -14,7 +14,7 @@ SUITE(mat4_test)
                     0.0f, 0.0f, 0.0f, 1.0f);
         CHECK_EQUAL(r, m);
         
-    }
+    }    
 
     TEST(transpose)
     {
