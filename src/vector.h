@@ -223,6 +223,20 @@ namespace glm
         return !(a == b);
     }
     
+    // for std::set, std::map and firends
+    template <typename T, unsigned int N>
+    bool operator < (const vector<T, N>& a, const vector<T, N>& b)
+    {
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            if (a[i] < b[i])
+            {
+                return true;
+            }
+        }        
+        return false;
+    }
+    
     template <typename T, unsigned int N>
     vector<T, N> operator + (const vector<T, N>& v)
     {

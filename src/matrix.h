@@ -152,6 +152,19 @@ namespace glm
             return !(*this == m);
         }
         
+        // for std::set, std::map and firends
+        bool operator < (const matrix<T, N>& m) const
+        {
+            for (unsigned int i = 0; i < N * N; i++)
+            {
+                if (data[i] < m.data[i]) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         const matrix<T, N>& operator += (const matrix<T, N>& v)
         {
             for (unsigned int i = 0; i < N*N; i++)
