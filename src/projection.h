@@ -31,12 +31,10 @@ namespace glm
     matrix<T, 4> perspective(T fov, T a, T n, T f)
     {
         
-        T t = n * std::tan(deg2rad(fov));
-        T b = -t;
-        T l = b * a;
-        T r = t * a;
+        T fh = n * std::tan(deg2rad(fov));
+        T fw = fh * a;
         
-        return frustum(l, r, b, t, n, f);
+        return frustum(-fw, fw, -fh, fh, n, f);
     }
 }
 

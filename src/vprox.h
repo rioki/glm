@@ -23,7 +23,7 @@ namespace glm
             {
                 data[j] = v[j];
             }
-            return this;
+            return *this;
         }
         
         const vprox<T, N>& operator = (const vector<T, N>& v)
@@ -32,7 +32,7 @@ namespace glm
             {
                 data[j] = v[j];
             }
-            return this;
+            return *this;
         }
         
         T& operator [] (unsigned int j)
