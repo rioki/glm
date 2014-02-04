@@ -163,8 +163,8 @@ namespace glm
                 data[i] = v.data[i];
             }
             return *this;
-        }       
-        
+        }     
+
         const vector<T, N>& operator += (const vector<T, N>& v)
         {
             for (unsigned int i = 0; i < N; i++)
@@ -229,9 +229,9 @@ namespace glm
     {
         for (unsigned int i = 0; i < N; i++)
         {                
-            if (a[i] < b[i])
+            if (a[i] != b[i])
             {
-                return true;
+                return a[i] < b[i];
             }
         }        
         return false;
