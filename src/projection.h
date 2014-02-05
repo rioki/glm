@@ -36,6 +36,28 @@ namespace glm
         
         return frustum(-fw, fw, -fh, fh, n, f);
     }
+    
+    template <typename T>
+    matrix<T, 4> lookat(vector<T, 3> eye, vector<T, 3> target, vector<T, 3> up)
+    {
+        vector<T, 3> zaxis = normalize(eye - target);    
+        vector<T, 3> xaxis = normalize(cross(up, zaxis));
+        vector<T, 3> yaxis = cross(zaxis, xaxis);     
+     
+        matrix<T, 4> orientation(
+           xaxis[0], yaxis[0], zaxis[0], 0,
+           xaxis[1], yaxis[1], zaxis[1], 0,
+           xaxis[2], yaxis[2], zaxis[2], 0,
+             0,       0,       0,     1);
+         
+        matrix<T, 4> translation(
+                  1,       0,       0, 0,
+                  0,       1,       0, 0, 
+                  0,       0,       1, 0,
+            -eye[0], -eye[1], -eye[2], 1);
+     
+        return orientation * translation;
+    }
 }
 
 #endif

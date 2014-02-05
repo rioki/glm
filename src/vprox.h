@@ -3,6 +3,7 @@
 #define _GLM_VPROX_H_
 
 #include <cassert>
+#include <cmath>
 
 #include "vector.h"
 
@@ -51,9 +52,28 @@ namespace glm
         {
             vector<T, N> r;
             
-            for (unsigned int j; j < N; j++)
+            for (unsigned int j = 0; j < N; j++)
             {
                 r[j] = data[j];
+            }
+            
+            return r;
+        }
+        
+        template <typename T2, unsigned int N2>
+        operator vector<T2, N2> () const
+        {
+            vector<T2, N2> r;
+            
+            unsigned int n = std::min(N, N2);
+            
+            for (unsigned int j = 0; j < n; j++)
+            {
+                r[j] = data[j];
+            }
+            for (unsigned int j = n; j < N2; j++)
+            {
+                r[j] = 0;
             }
             
             return r;
