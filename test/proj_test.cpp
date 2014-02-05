@@ -18,8 +18,7 @@ SUITE(proj_test)
     
     TEST(translate)
     {
-        glm::mat4 m(1);
-        m = translate(m, 1.0f, 2.0f, 3.0f);
+        glm::mat4 m = glm::translate(1.0f, 2.0f, 3.0f);
         
         glm::mat4 rm(1, 0, 0, 0,
                      0, 1, 0, 0,
@@ -34,8 +33,7 @@ SUITE(proj_test)
     
     TEST(translate2)
     {
-        glm::mat4 m(1);
-        m = glm::translate(m, glm::vec3(1, 2, 3));
+        glm::mat4 m = glm::translate(glm::vec3(1, 2, 3));
         
         glm::mat4 rm(1, 0, 0, 0,
                      0, 1, 0, 0,
