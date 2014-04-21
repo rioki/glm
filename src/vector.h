@@ -7,6 +7,19 @@
 #include <iostream>
 #include <algorithm>
 
+#ifndef NDEBUG
+#define S(x) #x
+#define S_(x) S(x)
+#define S__LINE__ S_(__LINE__)
+#define GLM_ASSERT(COND)                                                              \
+    if ((COND) == false)                                                              \
+    {                                                                                 \
+        throw std::logic_error(__FILE__ "(" S__LINE__ "): Assert " #COND " failed!"); \
+    }
+#else
+#define GLM_ASSERT(COND)
+#endif
+
 namespace glm
 {
     template <typename T, unsigned int N>
@@ -32,7 +45,7 @@ namespace glm
         
         vector(T x, T y)
         {            
-            assert(N >= 2);
+            GLM_ASSERT(N >= 2);
             
             data[0] = x;
             data[1] = y;
@@ -45,7 +58,7 @@ namespace glm
         
         vector(T x, T y, T z)
         {            
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[0] = x;
             data[1] = y;
@@ -59,7 +72,7 @@ namespace glm
         
         vector(T x, T y, T z, T w)
         {            
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[0] = x;
             data[1] = y;
@@ -74,7 +87,7 @@ namespace glm
         
         vector(T x, const vector<T, N - 1> v)
         {
-            assert(N >= 2);
+            GLM_ASSERT(N >= 2);
             
             data[0] = x;
             for (unsigned int i = 1; i < N; i++)
@@ -85,7 +98,7 @@ namespace glm
         
         vector(T x, T y, const vector<T, N - 2> v)
         {
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[0] = x;
             data[1] = y;
@@ -97,7 +110,7 @@ namespace glm
         
         vector(T x, const vector<T, N - 2> v, T u)
         {
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[0] = x;
             data[N-1] = u;
@@ -109,7 +122,7 @@ namespace glm
         
         vector(const vector<T, N-1> v, T s)
         {
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[N-1] = s;
             for (unsigned int i = 0; i < N - 1; i++)
@@ -120,7 +133,7 @@ namespace glm
         
         vector(const vector<T, N - 2> v, T u, T s)
         {
-            assert(N >= 3);
+            GLM_ASSERT(N >= 3);
             
             data[N-2] = u;
             data[N-1] = s;
@@ -185,13 +198,13 @@ namespace glm
         
         T& operator [] (unsigned int i)
         {
-            assert(i < N);
+            GLM_ASSERT(i < N);
             return data[i];
         }
         
         T operator [] (unsigned int i) const
         {
-            assert(i < N);
+            GLM_ASSERT(i < N);
             return data[i];
         }
         
