@@ -69,7 +69,7 @@ namespace glm
     }
     
     template <typename T>
-    matrix<T, 4> scale(const matrix<T, 4>& m, vector<T, 3> v)
+    matrix<T, 4> scale(vector<T, 3> v)
     {
         return scale(v[0], v[1], v[2]);
     }
