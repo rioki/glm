@@ -18,31 +18,26 @@ SUITE(proj_test)
     
     TEST(translate)
     {
-        glm::mat4 m = glm::translate(1.0f, 2.0f, 3.0f);
-        
-        glm::mat4 rm(1, 0, 0, 0,
-                     0, 1, 0, 0,
-                     0, 0, 1, 0,
-                     1, 2, 3, 1);
-        CHECK_EQUAL(rm, m);
+        glm::mat4 m = glm::translate(glm::mat4(1), glm::vec3(1, 2, 3));
         
         glm::vec4 r = m * glm::vec4(1, 1, 1, 1);
         
         CHECK_EQUAL(glm::vec4(2, 3, 4, 1), r);
     }
     
-    TEST(translate2)
+    TEST(rotate) 
     {
-        glm::mat4 m = glm::translate(glm::vec3(1, 2, 3));
+        glm::mat4 m = glm::rotate<float>(glm::mat4(1), 90, glm::vec3(0, 0, 1));
         
-        glm::mat4 rm(1, 0, 0, 0,
-                     0, 1, 0, 0,
-                     0, 0, 1, 0,
-                     1, 2, 3, 1);
-        CHECK_EQUAL(rm, m);
+        glm::vec4 r = m * glm::vec4(1, 0, 0, 0);
+        CHECK(glm::abs(glm::vec4(0, 1, 0, 0) - r) < glm::vec4(1e-4));
+    }
+    
+    TEST(scale) 
+    {
+        glm::mat4 m = glm::scale<float>(glm::mat4(1), 2, 3, 4);
         
         glm::vec4 r = m * glm::vec4(1, 1, 1, 1);
-        
         CHECK_EQUAL(glm::vec4(2, 3, 4, 1), r);
-    }
+    }  
 }

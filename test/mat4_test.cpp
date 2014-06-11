@@ -103,5 +103,57 @@ SUITE(mat4_test)
                     0, 0, 0, 1);
                     
         CHECK_EQUAL(r, m4);        
-    }    
+    }
+
+    TEST(subscript)
+    {
+        glm::mat4 m( 1,  2,  3, 4,
+                     5,  6,  7, 8,
+                     9, 10, 11, 12,
+                    13, 14, 15, 16);
+                    
+        CHECK_EQUAL(glm::vec4(1, 2, 3, 4), m[0]);
+        CHECK_EQUAL(glm::vec4(5, 6, 7, 8), m[1]);
+        CHECK_EQUAL(glm::vec4(9, 10, 11, 12), m[2]);
+        CHECK_EQUAL(glm::vec4(13, 14, 15, 16), m[3]);
+    }      
+    
+    TEST(subscript2)
+    {
+        glm::mat4 m( 1,  2,  3, 4,
+                     5,  6,  7, 8,
+                     9, 10, 11, 12,
+                    13, 14, 15, 16);
+        m[1] = glm::vec4(-1, -2, -3, -4);
+                   
+        CHECK_EQUAL(glm::vec4(-1, -2, -3, -4), m[1]);
+    }  
+    
+    TEST(mul_scal)
+    {
+        glm::mat4 m( 1,  2,  3, 4,
+                     5,  6,  7, 8,
+                     9, 10, 11, 12,
+                    13, 14, 15, 16);
+        
+        CHECK_EQUAL(glm::vec4(2.0f, 4.0f, 6.0f, 8.0f), m[0] * 2.0f);
+    }
+
+    TEST(set_subscript)
+    {
+        glm::mat4 m( 1,  2,  3, 4,
+                     5,  6,  7, 8,
+                     9, 10, 11, 12,
+                    13, 14, 15, 16);
+        
+        m[1] = m[1] * 2.0f;
+        
+        glm::mat4 rm( 1,  2,  3, 4,
+                     10, 12, 14, 16,
+                     9, 10, 11, 12,
+                    13, 14, 15, 16);
+        
+        CHECK_EQUAL(rm, m);
+    }            
+    
 }

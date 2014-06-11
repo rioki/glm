@@ -2,7 +2,6 @@
 pkginclude_HEADERS = src/glm.h \
                      src/vector.h \
                      src/matrix.h \
-                     src/vprox.h \
                      src/projection.h \
                      src/transform.h \
                      src/utils.h
@@ -10,7 +9,7 @@ pkginclude_HEADERS = src/glm.h \
 check_PROGRAMS     = glm-test
 TESTS              = glm-test
 
-glm_test_CXXFLAGS  = -Isrc
+glm_test_CXXFLAGS  = -g -Wall -Isrc
 glm_test_LDADD     = @TEST_LIBS@
 glm_test_SOURCES   = test/main.cpp \
                      test/vec2_test.cpp \

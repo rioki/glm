@@ -480,6 +480,19 @@ namespace glm
     }
     
     template <typename T, unsigned int N>
+    vector<T, N> abs(const vector<T, N>& v)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {             
+            r[i] = std::abs(v[i]);
+        } 
+        
+        return r;
+    }
+    
+    template <typename T, unsigned int N>
     std::ostream& operator << (std::ostream& os, const vector<T, N>& v)
     {
         os << "(";

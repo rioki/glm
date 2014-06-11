@@ -5,7 +5,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "vprox.h"
+#include "vector.h"
 
 namespace glm
 {
@@ -22,11 +22,11 @@ namespace glm
                 {
                     if (i == j)
                     {
-                        data[i*N + j] = 1;
+                        data[i][j] = 1;
                     }
                     else
                     {
-                        data[i*N + j] = 0;
+                        data[i][j] = 0;
                     }
                 }
             }
@@ -40,11 +40,11 @@ namespace glm
                 {
                     if (i == j)
                     {
-                        data[i*N + j] = v;
+                        data[i][j] = v;
                     }
                     else
                     {
-                        data[i*N + j] = 0;
+                        data[i][j] = 0;
                     }
                 }
             }
@@ -54,8 +54,8 @@ namespace glm
                float v02, float v03)
         {
             assert(N == 2);
-            data[0] = v00; data[1] = v01; 
-            data[2] = v02; data[3] = v03; 
+            data[0][0] = v00; data[0][1] = v01; 
+            data[1][0] = v02; data[1][1] = v03; 
         }
         
         matrix(float v00, float v01, float v02, 
@@ -63,9 +63,9 @@ namespace glm
                float v06, float v07, float v08)
         {
             assert(N == 3);
-            data[0] = v00; data[1] = v01; data[2] = v02; 
-            data[3] = v03; data[4] = v04; data[5] = v05; 
-            data[6] = v06; data[7] = v07; data[8] = v08;
+            data[0][0] = v00; data[0][1] = v01; data[0][2] = v02; 
+            data[1][0] = v03; data[1][1] = v04; data[1][2] = v05; 
+            data[2][0] = v06; data[2][1] = v07; data[2][2] = v08;
         }
         
         
@@ -75,10 +75,10 @@ namespace glm
                float v12, float v13, float v14, float v15)
         {
             assert(N == 4);
-            data[ 0] = v00; data[ 1] = v01; data[ 2] = v02; data[ 3] = v03;
-            data[ 4] = v04; data[ 5] = v05; data[ 6] = v06; data[ 7] = v07;
-            data[ 8] = v08; data[ 9] = v09; data[10] = v10; data[11] = v11;
-            data[12] = v12; data[13] = v13; data[14] = v14; data[15] = v15;
+            data[0][0] = v00; data[0][1] = v01; data[0][2] = v02; data[0][3] = v03;
+            data[1][0] = v04; data[1][1] = v05; data[1][2] = v06; data[1][3] = v07;
+            data[2][0] = v08; data[2][1] = v09; data[2][2] = v10; data[2][3] = v11;
+            data[3][0] = v12; data[3][1] = v13; data[3][2] = v14; data[3][3] = v15;
         }
         
         template <typename T2, unsigned int N2>       
@@ -90,15 +90,15 @@ namespace glm
                 {
                     if (i < N2 && j < N2)
                     {
-                        data[i*N + j] = o[i][j];
+                        data[i][j] = o[i][j];
                     }
                     else if (i == j)
                     {
-                        data[i*N + j] = 1;
+                        data[i][j] = 1;
                     }
                     else
                     {
-                        data[i*N + j] = 0;
+                        data[i][j] = 0;
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace glm
         
         matrix(const matrix<T, N>& o)
         {
-            for (unsigned int i = 0; i < N * N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 data[i] = o.data[i];
             }
@@ -121,22 +121,22 @@ namespace glm
             return *this;
         }
         
-        vprox<T, N> operator [] (unsigned int i)
+        vector<T, N>& operator [] (unsigned int i)
         {
-            assert(i < N);
-            return vprox<T, N>(&data[i * N]);
+            GLM_ASSERT(i < N);
+            return data[i];
         }
         
         // REVIEW check for const corectness
-        const vprox<T, N> operator [] (unsigned int i) const
+        const vector<T, N>& operator [] (unsigned int i) const
         {
-            assert(i < N);
-            return vprox<T, N>(const_cast<T*>(&data[i * N]));
+            GLM_ASSERT(i < N);
+            return data[i];
         }
         
         bool operator == (const matrix<T, N>& m) const
         {
-            for (unsigned int i = 0; i < N * N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 if (data[i] != m.data[i]) 
                 {
@@ -154,7 +154,7 @@ namespace glm
         // for std::set, std::map and firends
         bool operator < (const matrix<T, N>& m) const
         {
-            for (unsigned int i = 0; i < N * N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 if (data[i] < m.data[i]) 
                 {
@@ -166,7 +166,7 @@ namespace glm
         
         const matrix<T, N>& operator += (const matrix<T, N>& v)
         {
-            for (unsigned int i = 0; i < N*N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 data[i] += v.data[i];
             }
@@ -175,7 +175,7 @@ namespace glm
         
         const matrix<T, N>& operator -= (const matrix<T, N>& v)
         {
-            for (unsigned int i = 0; i < N*N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 data[i] -= v.data[i];
             }
@@ -188,7 +188,7 @@ namespace glm
         }
         
     private:
-        T data[N*N];
+        vector<T, N> data[N];
     };
     
     template <typename T, unsigned int N>
