@@ -184,7 +184,7 @@ namespace glm
         
         operator const T* () const
         {
-            return data;
+            return data[0];
         }
         
     private:
