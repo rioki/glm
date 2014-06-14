@@ -114,7 +114,7 @@ namespace glm
         
         const matrix<T,N>& operator = (const matrix<T, N>& o)
         {
-            for (unsigned int i = 0; i < N * N; i++)
+            for (unsigned int i = 0; i < N; i++)
             {
                 data[i] = o.data[i];
             }
