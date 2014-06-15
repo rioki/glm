@@ -465,6 +465,38 @@ namespace glm
         return r;
     }
     
+    template <typename T>
+    T limit(T v, T vmin, T vmax)
+    {
+        GLM_ASSERT(vmin < vmax);
+        
+        T d = vmax - vmin;
+        
+        while (v > vmax)
+        {
+            v -= d;
+        }
+        while (v < vmin)
+        {
+            v += d;
+        }
+        
+        return v;
+    }
+    
+    template <typename T, unsigned int N>
+    vector<T, N> limit(const vector<T, N>& v, T vmin, T vmax)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            r[i] = limit(v[i], vmin, vmax);
+        } 
+        
+        return r;
+    }
+    
     template <typename T, unsigned int N>
     vector<T, N> round(const vector<T, N>& v)
     {
