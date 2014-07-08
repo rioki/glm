@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <cstring>
 
 #include "vector.h"
 
@@ -69,6 +70,11 @@ namespace glm
         }
         
         
+        explicit matrix(T* orig)
+        {
+            std::memcpy(data, orig, sizeof(T) * N * N);        
+        }
+
         matrix(float v00, float v01, float v02, float v03, 
                float v04, float v05, float v06, float v07,
                float v08, float v09, float v10, float v11,
@@ -182,9 +188,9 @@ namespace glm
             return *this;
         }
         
-        operator const T* () const
+        const T* c_array() const
         {
-            return data[0];
+            return data[0].c_array();
         }
         
     private:
@@ -230,7 +236,7 @@ namespace glm
     template <typename T, unsigned int N>    
     matrix<T, N> operator * (const matrix<T, N>& a, const matrix<T, N>& b)
     {
-        matrix<T, N> r(0);
+        matrix<T, N> r((T)0);
         
         for (unsigned int i = 0; i < N; i++)
         {
@@ -249,7 +255,7 @@ namespace glm
     template <typename T, unsigned int N>
     vector<T, N> operator * (const matrix<T, N>& m, const vector<T, N>& v)
     {
-        vector<T, N> r(0);
+        vector<T, N> r((T)0);
         
         for (unsigned int i = 0; i < N; i++)
         {
@@ -265,7 +271,7 @@ namespace glm
     template <typename T, unsigned int N>
     matrix<T, N> matrixCompMult(const matrix<T, N>& a, const matrix<T, N>& b)
     {
-        matrix<T, N> r(0);
+        matrix<T, N> r((T)0);
         
         for (unsigned int i = 0; i < N; i++)
         {
@@ -281,7 +287,7 @@ namespace glm
     template <typename T, unsigned int N>
     matrix<T, N> transpose(const matrix<T, N>& m)
     {
-        matrix<T, N> r(0);
+        matrix<T, N> r((T)0);
         
         for (unsigned int i = 0; i < N; i++)
         {
