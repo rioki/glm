@@ -208,7 +208,7 @@ namespace glm
             return data[i];
         }
         
-        operator const T* () const
+        const T* c_array() const
         {
             return data;
         }
@@ -297,6 +297,12 @@ namespace glm
         
         return r;
     }
+
+    template <typename T, unsigned int N>
+    vector<T, N> operator * (T a, const vector<T, N>& b)
+    {
+        return b * a;
+    }
     
     template <typename T, unsigned int N>
     vector<T, N> operator * (const vector<T, N>& a, const vector<T, N>& b)
@@ -306,6 +312,19 @@ namespace glm
         for (unsigned int i = 0; i < N; i++)
         {                
             r[i] = a[i] * b[i];
+        } 
+        
+        return r;
+    }
+
+    template <typename T, unsigned int N>
+    vector<T, N> operator / (const vector<T, N>& a, T b)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            r[i] = a[i] / b;
         } 
         
         return r;
@@ -410,6 +429,19 @@ namespace glm
         for (unsigned int i = 0; i < N; i++)
         {                
             r[i] = std::max(a[i], b);
+        } 
+        
+        return r;
+    }
+
+    template <typename T, unsigned int N>
+    vector<T, N> pow(const vector<T, N>& a, const vector<T, N>& b)
+    {
+        vector<T, N> r;
+
+        for (unsigned int i = 0; i < N; i++)
+        {                
+            r[i] = std::pow(a[i], b[i]);
         } 
         
         return r;

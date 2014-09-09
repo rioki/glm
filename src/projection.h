@@ -17,7 +17,7 @@ namespace glm
                                      0.0,          0.0,   -2.0/(f-n), 0.0,
                             -(r+l)/(r-l), -(t+b)/(t-b), -(f+n)/(f-n), 1.0);                          
     }
-    
+
     template <typename T>
     matrix<T, 4> frustum(T l, T r, T b, T t, T n, T f)
     {

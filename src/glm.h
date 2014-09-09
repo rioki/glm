@@ -6,5 +6,6 @@
 #include "matrix.h"
 #include "projection.h"
 #include "transform.h"
+#include "quaternion.h"
 
 #endif

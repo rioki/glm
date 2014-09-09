@@ -6,6 +6,7 @@
 #include "utils.h"
 #include "vector.h"
 #include "matrix.h"
+#include "quaternion.h"
 
 namespace glm
 {    
