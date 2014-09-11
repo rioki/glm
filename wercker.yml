@@ -8,13 +8,7 @@ build:
         code: git clone https://github.com/rioki/rtest.git
     - script: 
         name: build rtest
-        code: cd rtest && make && sudo make install
-    - script:
-        name: autogen
-        code: sh autogen.sh
-    - script:
-        name: configure
-        code: sh configure
+        code: cd rtest && make && sudo make install    
     - script:
         name: make check
         code: make check
